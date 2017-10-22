@@ -148,11 +148,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818947709065890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd3798fc316c8c94e9313adbc05a1004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particulas: {fileID: 0}
 --- !u!114 &114260003120713892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,3 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3798fc316c8c94e9313adbc05a1004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particulas: {fileID: 1733570992400306, guid: 2083fbac3eb7dcf48bb25997eb21f276, type: 2}

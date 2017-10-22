@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class ToqueCubo : MonoBehaviour
 {
+    public GameObject particulas;
     Animator anim;
     bool showing;
+    int x = 0;
     private void Awake()
     {
         try
         {
-             anim = transform.parent.GetComponent<Animator>();
+            anim = transform.parent.GetComponent<Animator>();
         }
         catch (NullReferenceException ex)
         {
@@ -19,19 +21,32 @@ public class ToqueCubo : MonoBehaviour
         }
         
     }
+
+    private void Update()
+    {
+        print(x);    
+    }
+
     private void OnMouseDown()
     {
-        Mostrar();
+        if (x == 0)
+        {
+            Mostrar();
+        }
+        else {
+            print("i");
+        }
+        
     }
 
     void Mostrar()
     {
-        if (!showing)
+        if (!showing  && x == 0 /*&& (Comparison.seleccionados[0] != null || Comparison.seleccionados[1] != null)*/)
         {
             showing = true;
             ShowAnimation();
         }
-        else if (showing)
+        else if (showing && x == 0 /* && (Comparison.seleccionados[0] != null || Comparison.seleccionados[1] != null)*/)
         {
             showing = false;
             ShowAnimation();
@@ -43,7 +58,7 @@ public class ToqueCubo : MonoBehaviour
         if (showing)
         {
             anim.SetBool("Show", true);
-            if (Comparison.contSeleccionados < 2)
+            if (Comparison.contSeleccionados < 2 && x == 0)
             {
                 Comparison.seleccionados[Comparison.contSeleccionados] = this.gameObject;
                 Comparison.contSeleccionados++;
@@ -51,10 +66,8 @@ public class ToqueCubo : MonoBehaviour
             }
             if (Comparison.contSeleccionados > 1 && Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture == Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture)
             {
-                //anim.SetBool("Destroy", true);
-                Invoke("DestroyAnimation",1.2f);
-                Invoke("SameCubes", 2.2f);
-                Comparison.contSeleccionados = 0;
+                Invoke("DeactiveDestroyAnimation", .05f);
+                x = 0;
             }
 
             if (Comparison.contSeleccionados > 1 && (Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture != Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture ))
@@ -68,40 +81,13 @@ public class ToqueCubo : MonoBehaviour
             Comparison.contSeleccionados--;
             print(Comparison.contSeleccionados);
         }
-
-        /*if (compare.contSeleccionados < 2 && show)
-        {
-            Comparison.seleccionados[Comparison.contSeleccionados] = this.gameObject;
-            print(Comparison.seleccionados[Comparison.contSeleccionados]);
-            Comparison.contSeleccionados++;
-            print(Comparison.contSeleccionados);
-            if (Comparison.contSeleccionados > 1 && Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture.name == Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture.name )
-            {
-                //anim.SetBool("Destroy", true);
-                Comparison.seleccionados[0].transform.parent.GetComponent<Animator>().SetBool("Destroy", true);
-                Comparison.seleccionados[1].transform.parent.GetComponent<Animator>().SetBool("Destroy", true);
-                Invoke("SameCubes", 1f);
-                Comparison.contSeleccionados = 0;
-            }
-            else if (Comparison.contSeleccionados > 1 && Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture.name != Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture.name)
-            {
-                Comparison.seleccionados[0].transform.parent.GetComponent<Animator>().SetBool("Show", false);
-                Comparison.seleccionados[1].transform.parent.GetComponent<Animator>().SetBool("Show", false);
-                Comparison.contSeleccionados = 0;
-            
-        }
-        else if (Comparison.contSeleccionados < 2 && !show)
-        {
-            Comparison.contSeleccionados--;
-            print(Comparison.contSeleccionados);
-        }
-        */
     }
 
-    void DestroyAnimation()
+    void DeactiveAnimation()
     {
-        Comparison.seleccionados[0].transform.parent.GetComponent<Animator>().SetBool("Destroy", true);
-        Comparison.seleccionados[1].transform.parent.GetComponent<Animator>().SetBool("Destroy", true);
+        Comparison.seleccionados[0].transform.parent.GetComponent<Animator>().SetBool("Deactive", true);
+        Comparison.seleccionados[1].transform.parent.GetComponent<Animator>().SetBool("Deactive", true);
+        Invoke("DeactiveDestroyAnimation", .05f);
     }
 
     void DeselectFunction()
@@ -114,9 +100,20 @@ public class ToqueCubo : MonoBehaviour
         
     }
 
-    void SameCubes()
+    /*void SameCubes()
     {
+        x = 0;
         Destroy(Comparison.seleccionados[0]);
         Destroy(Comparison.seleccionados[1]);
+    }*/
+
+    void DeactiveDestroyAnimation()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            Comparison.seleccionados[i].SetActive(false);
+            Instantiate(particulas, Comparison.seleccionados[i].transform.position, Quaternion.identity);
+        }
+        Comparison.contSeleccionados = 0;
     }
 }
