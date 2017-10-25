@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Dificil2.unity
+- path: Assets/Scenes/Facil.unity
   isLoaded: 1
   isActive: 1

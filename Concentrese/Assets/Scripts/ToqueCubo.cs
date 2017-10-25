@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToqueCubo : MonoBehaviour
 {
     public GameObject particulas;
+    //public GameObject ganaste;
+    //public Text points;
     Animator anim;
     bool showing;
-    int x = 0;
+    int x = 0; /*n_points = 0*/
     private void Awake()
     {
+        //n_points = 0;
+        //points = GameObject.Find("Canvas Puntaje/Puntaje").GetComponent<Text>();
+        //ganaste = GameObject.Find("Ganaste");
         try
         {
             anim = transform.parent.GetComponent<Animator>();
@@ -19,8 +25,12 @@ public class ToqueCubo : MonoBehaviour
         {
             Debug.Log("Animator");
         }
-        
     }
+
+    /*public void Start()
+    {
+        ganaste.SetActive(false);
+    }*/
 
     private void Update()
     {
@@ -68,6 +78,13 @@ public class ToqueCubo : MonoBehaviour
             {
                 Invoke("DeactiveDestroyAnimation", .05f);
                 x = 0;
+                Comparison.cantParejas--;
+                //n_points += 100;
+                //points.text = "Puntos: " + n_points.ToString();
+                /*if (Comparison.cantParejas == 0)
+                {
+                    //ganaste.SetActive(true);
+                }*/
             }
 
             if (Comparison.contSeleccionados > 1 && (Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture != Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture ))
@@ -99,13 +116,6 @@ public class ToqueCubo : MonoBehaviour
         Comparison.contSeleccionados = 0;
         
     }
-
-    /*void SameCubes()
-    {
-        x = 0;
-        Destroy(Comparison.seleccionados[0]);
-        Destroy(Comparison.seleccionados[1]);
-    }*/
 
     void DeactiveDestroyAnimation()
     {

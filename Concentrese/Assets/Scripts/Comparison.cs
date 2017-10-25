@@ -8,7 +8,7 @@ public class Comparison : MonoBehaviour
     public GameObject mainCamera;
     public static GameObject[] seleccionados = new GameObject[3];
     public static int contSeleccionados = 0;
-
+    public static int cantParejas = 0;
     public List<GameObject> cubes;
     int columns = 4, rows = 5;
 
@@ -21,6 +21,7 @@ public class Comparison : MonoBehaviour
             Camera.main.transform.position = new Vector3(1f, .6f, -10f);
             columns = 2;
             rows = 2;
+            cantParejas = 2;
         }
         else if (scene.name == "Normal")
         {
@@ -28,6 +29,7 @@ public class Comparison : MonoBehaviour
             Camera.main.transform.position = new Vector3(2f, 1f, -10f);
             columns = 3;
             rows = 2;
+            cantParejas = 3;
         }
         else if (scene.name == "Dificil1")
         {
@@ -35,6 +37,7 @@ public class Comparison : MonoBehaviour
             Camera.main.transform.position = new Vector3(2.97f, 2.56f, -10);
             columns = 4;
             rows = 4;
+            cantParejas = 8;
         }
         else if (scene.name == "Dificil2")
         {
@@ -43,6 +46,7 @@ public class Comparison : MonoBehaviour
             Camera.main.orthographicSize = 6f;
             columns = 5;
             rows = 4;
+            cantParejas = 10;
         }
         columns *= 2;
         rows *= 2;
