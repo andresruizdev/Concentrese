@@ -24,6 +24,7 @@ public class Botones : MonoBehaviour {
     public void GanasteSi()
     {
         print(1);
+        Comparison.sw = 1;
         ganaste.SetActive(false);
         selectorDificultad.SetActive(true);
     }

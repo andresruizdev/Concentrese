@@ -2,39 +2,34 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class ToqueCubo : MonoBehaviour
 {
+    [Header("Partículas")]
     public GameObject particulas;
-    //public GameObject ganaste;
-    //public Text points;
+
+    [Header("Animaciones")]
     Animator anim;
     bool showing;
-    int x = 0; /*n_points = 0*/
+    int x = 0;
+
+    [Header("Audio")]
+    [SerializeField]
+    GameObject audioManager;
+
+    //n_points = 0
     private void Awake()
     {
-        //n_points = 0;
-        //points = GameObject.Find("Canvas Puntaje/Puntaje").GetComponent<Text>();
-        //ganaste = GameObject.Find("Ganaste");
+        Puntos.cant_puntos = 0;
         try
         {
             anim = transform.parent.GetComponent<Animator>();
         }
         catch (NullReferenceException ex)
         {
-            Debug.Log("Animator");
+            print(ex);
         }
-    }
-
-    /*public void Start()
-    {
-        ganaste.SetActive(false);
-    }*/
-
-    private void Update()
-    {
-        print(x);    
     }
 
     private void OnMouseDown()
@@ -72,24 +67,22 @@ public class ToqueCubo : MonoBehaviour
             {
                 Comparison.seleccionados[Comparison.contSeleccionados] = this.gameObject;
                 Comparison.contSeleccionados++;
-                print(Comparison.contSeleccionados);
             }
             if (Comparison.contSeleccionados > 1 && Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture == Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture)
             {
                 Invoke("DeactiveDestroyAnimation", .05f);
                 x = 0;
                 Comparison.cantParejas--;
-                //n_points += 100;
-                //points.text = "Puntos: " + n_points.ToString();
-                /*if (Comparison.cantParejas == 0)
-                {
-                    //ganaste.SetActive(true);
-                }*/
             }
 
             if (Comparison.contSeleccionados > 1 && (Comparison.seleccionados[0].GetComponent<Renderer>().material.mainTexture != Comparison.seleccionados[1].GetComponent<Renderer>().material.mainTexture ))
             {
-                Invoke("DeselectFunction", 1.6f);
+                Invoke("DeselectFunction", 1f);
+                Puntos.cant_puntos -= 5;
+                if (Puntos.cant_puntos < 0)
+                {
+                    Puntos.cant_puntos = 0;
+                }
             }
         }
         else if (!showing)
@@ -121,6 +114,7 @@ public class ToqueCubo : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
+            Puntos.cant_puntos += 50;
             Comparison.seleccionados[i].SetActive(false);
             Instantiate(particulas, Comparison.seleccionados[i].transform.position, Quaternion.identity);
         }

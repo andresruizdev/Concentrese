@@ -5,19 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class Comparison : MonoBehaviour
 {
-    public GameObject mainCamera;
+    public GameObject ganaste;
     public static GameObject[] seleccionados = new GameObject[3];
     public static int contSeleccionados = 0;
     public static int cantParejas = 0;
+    public static int sw;
     public List<GameObject> cubes;
     int columns = 4, rows = 5;
 
     void Awake()
     {
+        sw = 0;
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "Facil")
         {
-            print(scene.name);
             Camera.main.transform.position = new Vector3(1f, .6f, -10f);
             columns = 2;
             rows = 2;
@@ -60,6 +61,12 @@ public class Comparison : MonoBehaviour
             }
         }
     }
-    
 
+    private void Update()
+    {
+        if (cantParejas <= 0 && sw == 0)
+        {
+            ganaste.SetActive(true);
+        }
+    }
 }

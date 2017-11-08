@@ -13,10 +13,10 @@ EditorBuildSettings:
     guid: d121b8630db45ec4f928bb6a06f3db9d
   - enabled: 1
     path: Assets/Scenes/Normal.unity
-    guid: 128195a028e94e74abc30ea6559eae4f
+    guid: b880587410393494a82aef5e52f447b4
   - enabled: 1
     path: Assets/Scenes/Dificil1.unity
-    guid: a3697b54ad7fd4d43861d3db0ce2bcb9
+    guid: c2ce6ee2084614e4f90a25f372fe05b7
   - enabled: 1
     path: Assets/Scenes/Dificil2.unity
-    guid: cebb373db4f45a94ebc456937216596d
+    guid: f689dfd31e2ba1247bab987a8447c9fb
