@@ -1,0 +1,32 @@
+<dependencies>
+  <packages>
+    <package>com.android.support:customtabs:+</package>
+    <package>com.android.support:support-v4:+</package>
+    <package>com.google.android.gms:play-services-gcm:+</package>
+    <package>com.google.android.gms:play-services-location:+</package>
+  </packages>
+  <files>
+    <file>Assets/Plugins/Android/common-1.0.0.jar</file>
+    <file>Assets/Plugins/Android/customtabs-27.0.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-base-11.6.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-base-license-11.6.0</file>
+    <file>Assets/Plugins/Android/play-services-basement-11.6.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-basement-license-11.6.0</file>
+    <file>Assets/Plugins/Android/play-services-gcm-11.6.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-gcm-license-11.6.0</file>
+    <file>Assets/Plugins/Android/play-services-iid-11.6.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-iid-license-11.6.0</file>
+    <file>Assets/Plugins/Android/play-services-location-11.6.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-location-license-11.6.0</file>
+    <file>Assets/Plugins/Android/play-services-tasks-11.6.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-tasks-license-11.6.0</file>
+    <file>Assets/Plugins/Android/runtime-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/support-annotations-27.0.0.jar</file>
+    <file>Assets/Plugins/Android/support-compat-27.0.0.aar</file>
+    <file>Assets/Plugins/Android/support-core-ui-27.0.0.aar</file>
+    <file>Assets/Plugins/Android/support-core-utils-27.0.0.aar</file>
+    <file>Assets/Plugins/Android/support-fragment-27.0.0.aar</file>
+    <file>Assets/Plugins/Android/support-media-compat-27.0.0.aar</file>
+    <file>Assets/Plugins/Android/support-v4-27.0.0.aar</file>
+  </files>
+</dependencies>
